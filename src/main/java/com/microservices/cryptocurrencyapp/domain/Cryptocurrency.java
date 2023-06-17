@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
+@Table(indexes = @Index(columnList = "symbol"))
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
