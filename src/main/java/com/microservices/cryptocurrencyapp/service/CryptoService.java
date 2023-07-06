@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -28,7 +29,13 @@ public class CryptoService {
 
     public void deleteBySymbol(String symbol) throws CryptocurrencyNotFoundException, CryptoIsObjectOfTradingException {
         Cryptocurrency crypto = cryptocurrencyDao.findBySymbol(symbol).orElseThrow(CryptocurrencyNotFoundException::new);
-        // todo check in trade service if there is something with this crypto
+        // todo check in trade service if there are trades with particular crypto
         cryptocurrencyDao.deleteBySymbol(symbol);
+    }
+
+    public List<String> fetchListOfCryptoSymbols() {
+        return cryptocurrencyDao.findAll().stream()
+                .map(c -> c.getSymbol())
+                .collect(Collectors.toList());
     }
 }

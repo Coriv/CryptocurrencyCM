@@ -28,6 +28,12 @@ public class CryptocurrencyController {
         return ResponseEntity.ok(cryptoCryptocurrencyMapper.mapToCryptoListDto(cryptos));
     }
 
+    @GetMapping("/symbols")
+    public ResponseEntity<List<String>> fetchCryptocurrencySymbolsList() {
+        var symbols = cryptoDbCryptoService.fetchListOfCryptoSymbols();
+        return ResponseEntity.ok(symbols);
+    }
+
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> addCryptocurrency(@Valid @RequestBody CryptocurrencyDto cryptocurrencydto) {
         cryptoDbCryptoService.add(cryptoCryptocurrencyMapper.mapToCryptocurrency(cryptocurrencydto));

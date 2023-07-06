@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class Cryptocurrency {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @NotNull
     @Column(unique = true)
     private String symbol;
 
