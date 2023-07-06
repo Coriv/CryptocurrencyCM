@@ -21,10 +21,8 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class CryptoServiceTestSuite {
-
     @InjectMocks
     private CryptoService service;
-
     @Mock
     private CryptocurrencyDao cryptoDao;
 
